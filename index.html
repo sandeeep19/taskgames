@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Duck Dash</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="shell">
+        <div class="hero">
+          <p class="eyebrow">Arcade Endless Runner</p>
+          <h1>Duck Dash</h1>
+          <p class="summary">
+            Jump over logs, dodge reeds, and keep the duck waddling as long as you
+            can in a runner inspired by the Google dinosaur doodle.
+          </p>
+        </div>
+
+        <section class="hud" aria-label="Game stats">
+          <article><span>Score</span><strong id="score">0</strong></article>
+          <article><span>Best</span><strong id="best-score">0</strong></article>
+          <article><span>Speed</span><strong id="speed">1.0x</strong></article>
+          <article><span>State</span><strong id="state-label">Ready</strong></article>
+        </section>
+
+        <div class="status-row">
+          <p id="status" class="status">
+            Press space or tap jump to start your duck run.
+          </p>
+          <div class="actions">
+            <button id="start-button" type="button">Start</button>
+            <button id="restart-button" type="button">Restart</button>
+          </div>
+        </div>
+
+        <div class="viewport">
+          <canvas
+            id="game"
+            width="960"
+            height="360"
+            aria-label="Duck endless runner game"
+          ></canvas>
+        </div>
+
+        <div class="controls">
+          <button type="button" data-control="jump" aria-label="Jump">Jump</button>
+          <button type="button" data-control="restart" aria-label="Restart">Restart</button>
+        </div>
+
+        <p class="hint">
+          Keyboard: <strong>Space</strong>, <strong>W</strong>, or
+          <strong>Arrow Up</strong> to jump. Press <strong>R</strong> to restart.
+        </p>
+      </section>
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
