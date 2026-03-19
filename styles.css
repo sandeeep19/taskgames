@@ -51,6 +51,8 @@ button {
   border: 1px solid var(--panel-border);
   box-shadow: 0 28px 80px var(--shadow);
   backdrop-filter: blur(12px);
+  display: grid;
+  gap: 0;
 }
 
 .hero {
@@ -147,6 +149,7 @@ h1 {
   border: 3px solid rgba(255, 255, 255, 0.14);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   touch-action: manipulation;
+  margin-top: 16px;
 }
 
 canvas {
@@ -197,39 +200,89 @@ canvas {
   }
 
   .shell {
-    padding: 14px;
+    padding: 12px;
     border-radius: 22px;
   }
 
-  h1 {
-    font-size: 2.2rem;
+  .hero {
+    gap: 6px;
   }
 
+  .eyebrow,
   .summary,
-  .status,
   .hint {
-    font-size: 0.96rem;
+    display: none;
+  }
+
+  h1 {
+    font-size: 1.95rem;
   }
 
   .hud {
-    gap: 10px;
+    margin-top: 10px;
+    gap: 8px;
   }
 
   .hud article {
-    padding: 12px 14px;
-    border-radius: 16px;
+    padding: 10px 12px;
+    border-radius: 14px;
+  }
+
+  .hud span {
+    font-size: 0.82rem;
   }
 
   .hud strong {
-    font-size: 1.15rem;
+    margin-top: 4px;
+    font-size: 1rem;
   }
 
   .status-row {
-    gap: 12px;
+    margin: 10px 0 0;
+    gap: 10px;
+  }
+
+  .status {
+    font-size: 0.92rem;
+    line-height: 1.35;
+  }
+
+  .actions {
+    gap: 8px;
+  }
+
+  .actions button {
+    min-height: 48px;
+    padding: 10px 12px;
   }
 
   .viewport {
+    order: 1;
+    margin-top: 14px;
     border-radius: 18px;
+  }
+
+  canvas {
+    aspect-ratio: 16 / 9;
+  }
+
+  .controls {
+    order: 2;
+    margin-top: 12px;
+    gap: 8px;
+  }
+
+  .hero {
+    order: 3;
+    margin-top: 12px;
+  }
+
+  .hud {
+    order: 4;
+  }
+
+  .status-row {
+    order: 5;
   }
 
   .actions button,
