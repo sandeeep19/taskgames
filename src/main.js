@@ -10,6 +10,7 @@ import {
 } from "./gameLogic.js";
 
 const canvas = document.querySelector("#game");
+const gameShell = document.querySelector("#game-shell");
 const context = canvas.getContext("2d");
 const scoreValue = document.querySelector("#score");
 const bestScoreValue = document.querySelector("#best-score");
@@ -29,6 +30,15 @@ let jumpQueued = false;
 render();
 requestAnimationFrame(loop);
 
+gameShell.addEventListener("pointerdown", (event) => {
+  if (event.target.closest("button")) {
+    return;
+  }
+
+  event.preventDefault();
+  queueJump();
+});
+
 window.addEventListener("keydown", (event) => {
   const key = event.key.toLowerCase();
 
@@ -41,10 +51,7 @@ window.addEventListener("keydown", (event) => {
 
   if (key === " " || key === "arrowup" || key === "w") {
     event.preventDefault();
-    if (!state.started || state.gameOver) {
-      state = startGame(state);
-    }
-    jumpQueued = true;
+    queueJump();
     render();
   }
 });
@@ -71,10 +78,7 @@ controlButtons.forEach((button) => {
       return;
     }
 
-    if (!state.started || state.gameOver) {
-      state = startGame(state);
-    }
-    jumpQueued = true;
+    queueJump();
     render();
   });
 });
@@ -101,6 +105,7 @@ function render() {
   statusValue.textContent = getStatusMessage(state);
   startButton.textContent = state.started && !state.gameOver ? "Running" : "Start";
   startButton.disabled = state.started && !state.gameOver;
+  canvas.setAttribute("aria-label", getCanvasLabel(state));
 }
 
 function drawScene() {
@@ -313,6 +318,26 @@ function getStatusMessage(currentState) {
   }
 
   return "The pond is getting faster. Keep hopping over every obstacle.";
+}
+
+function getCanvasLabel(currentState) {
+  if (currentState.gameOver) {
+    return `Duck Dash game over. Score ${Math.floor(currentState.score)}. Tap or press jump to restart.`;
+  }
+
+  if (!currentState.started) {
+    return "Duck Dash ready. Tap the game area or press jump to start.";
+  }
+
+  return `Duck Dash running. Score ${Math.floor(currentState.score)} at speed ${(currentState.speed / BASE_SCROLL_SPEED).toFixed(1)}x.`;
+}
+
+function queueJump() {
+  if (!state.started || state.gameOver) {
+    state = startGame(state);
+  }
+
+  jumpQueued = true;
 }
 
 function loadBestScore() {

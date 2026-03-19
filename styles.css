@@ -16,6 +16,10 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -29,6 +33,7 @@ body {
 
 button {
   font: inherit;
+  touch-action: manipulation;
 }
 
 .app {
@@ -136,16 +141,19 @@ h1 {
 }
 
 .viewport {
+  position: relative;
   overflow: hidden;
   border-radius: 24px;
   border: 3px solid rgba(255, 255, 255, 0.14);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  touch-action: manipulation;
 }
 
 canvas {
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 8 / 3;
   background: #d9f8ff;
 }
 
@@ -179,15 +187,60 @@ canvas {
   .actions button,
   .controls button {
     flex: 1 1 140px;
+    min-height: 52px;
   }
 }
 
 @media (max-width: 560px) {
   .app {
+    padding: 12px;
+  }
+
+  .shell {
     padding: 14px;
+    border-radius: 22px;
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+  }
+
+  .summary,
+  .status,
+  .hint {
+    font-size: 0.96rem;
+  }
+
+  .hud {
+    gap: 10px;
+  }
+
+  .hud article {
+    padding: 12px 14px;
+    border-radius: 16px;
+  }
+
+  .hud strong {
+    font-size: 1.15rem;
+  }
+
+  .status-row {
+    gap: 12px;
+  }
+
+  .viewport {
+    border-radius: 18px;
+  }
+
+  .actions button,
+  .controls button {
+    min-width: 0;
+    min-height: 56px;
+    padding: 12px 14px;
+    font-weight: 700;
+  }
+
+  .hint strong {
+    white-space: nowrap;
   }
 }
